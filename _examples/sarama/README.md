@@ -14,5 +14,3 @@ $ cd $GOPATH/src/github.com/travisjeffery/jocko/examples/sarama
 ```
 $ go run main.go
 ```
-
-
