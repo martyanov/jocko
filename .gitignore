@@ -1,11 +1,6 @@
+*.index
+*.log
+.*
+cmd/jocko/jocko
 peers.json
 store.db
-vendor/*
-!vendor/vendor.json
-.idea
-*.log
-*.index
-.dir-locals.el
-.#*
-.DS_Store
-cmd/jocko/jocko
