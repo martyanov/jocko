@@ -1,5 +1,4 @@
 BUILD_PATH := cmd/jocko/jocko
-DOCKER_TAG := latest
 
 all: test
 
@@ -20,9 +19,6 @@ release:
 clean:
 	@rm -rf dist
 
-build-docker:
-	@docker build -t travisjeffery/jocko:$(DOCKER_TAG) .
-
 generate:
 	@go generate
 
@@ -32,4 +28,4 @@ test:
 test-race:
 	@go test -v -race -p=1 ./...
 
-.PHONY: test-race test build-docker clean release build deps vet all
+.PHONY: test-race test clean release build deps vet all

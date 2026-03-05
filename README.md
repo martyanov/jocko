@@ -80,10 +80,6 @@ I’m writing a book for PragProg called Building Distributed Services with Go. 
     (If you see an error about `dep` not being found, ensure that
     `$GOPATH/bin` is in your `PATH`)
 
-### Docker
-
-`docker build -t travisjeffery/jocko:latest .`
-
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md) for details on submitting patches and the contribution workflow.
