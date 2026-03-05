@@ -1327,7 +1327,7 @@ type Replica struct {
 	sync.Mutex
 }
 
-func (r Replica) String() string {
+func (r *Replica) String() string {
 	return fmt.Sprintf("replica: %d {broker: %d, leader: %d, hw: %d, leo: %d}", r.Partition.ID, r.BrokerID, r.Partition.Leader, r.Hw, r.Leo)
 }
 
