@@ -80,10 +80,6 @@ I’m writing a book for PragProg called Building Distributed Services with Go. 
     (If you see an error about `dep` not being found, ensure that
     `$GOPATH/bin` is in your `PATH`)
 
-## Contributing
-
-See [CONTRIBUTING](CONTRIBUTING.md) for details on submitting patches and the contribution workflow.
-
 ## License
 
 Jocko is under the MIT license, see the [LICENSE](LICENSE) file for details.
