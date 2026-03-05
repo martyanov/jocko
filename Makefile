@@ -1,31 +1,35 @@
-BUILD_PATH := cmd/jocko/jocko
+.DEFAULT: help
+.PHONY: help build gen lint test race clean
 
-all: test
+GOLANG_PATH=$(CURDIR)/.go
+JOCKO_BIN := cmd/jocko/jocko
 
-deps:
-	@which dep 2>/dev/null || go get -u github.com/golang/dep/cmd/dep
-	@dep ensure -v
+help:
+	@echo "Please use \`$(MAKE) <target>' where <target> is one of the following:"
+	@echo "  help       - show help information"
+	@echo "  build      - build the project"
+	@echo "  gen        - run generate"
+	@echo "  lint       - lint the project"
+	@echo "  test       - run project tests"
+	@echo "  race       - run project tests with race detector enabled"
+	@echo "  clean      - clean up project environment and all the build artifacts"
 
-vet:
-	@go list ./... | grep -v vendor | xargs go vet
+build:
+	GOPATH=$(GOLANG_PATH) go build -o $(JOCKO_BIN) cmd/jocko/main.go
 
-build: deps
-	@go build -o $(BUILD_PATH) cmd/jocko/main.go
+gen:
+	GOPATH=$(GOLANG_PATH) go generate
 
-release:
-	@which goreleaser 2>/dev/null || go get -u github.com/goreleaser/goreleaser
-	@goreleaser
-
-clean:
-	@rm -rf dist
-
-generate:
-	@go generate
+lint:
+	GOPATH=$(GOLANG_PATH) go list ./... | grep -v vendor | xargs go vet
 
 test:
-	@go test -v ./...
+	GOPATH=$(GOLANG_PATH) go test -v ./...
 
-test-race:
-	@go test -v -race -p=1 ./...
+race:
+	GOPATH=$(GOLANG_PATH) go test -v -race -p=1 ./...
 
-.PHONY: test-race test clean release build deps vet all
+clean:
+	GOPATH=$(GOLANG_PATH) go clean -modcache
+	rm $(JOCKO_BIN)
+	rm -rf $(GOLANG_PATH)
